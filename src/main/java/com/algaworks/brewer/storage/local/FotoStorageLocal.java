@@ -37,7 +37,7 @@ public class FotoStorageLocal implements FotoStorage {
 			MultipartFile arquivo = files[0];
 			novoNome = renomearArquivo(arquivo.getOriginalFilename());
 			try {
-				arquivo.transferTo(new File(this.localTemporario.toAbsolutePath().toString() + getDefault().getSeparator() + arquivo.getOriginalFilename()));
+				arquivo.transferTo(new File(this.localTemporario.toAbsolutePath().toString() + getDefault().getSeparator() + novoNome));
 			} catch (IOException e) {
 				throw new RuntimeException("Erro salvanco na pasta temporária", e);
 			}
@@ -45,6 +45,16 @@ public class FotoStorageLocal implements FotoStorage {
 		
 		return novoNome;
 	}
+	
+	@Override
+	public byte[] recuperarFotoTemporaria(String nome) {
+		try {
+			return Files.readAllBytes(this.localTemporario.resolve(nome));
+		} catch (IOException e) {
+			throw new RuntimeException("Erro lendo a foto temporária", e);
+		}
+	}
+
 
 	private void criarPastas() {
 		try {
@@ -73,6 +83,7 @@ public class FotoStorageLocal implements FotoStorage {
 		
 	}
 
+	
 	
 	
 }
