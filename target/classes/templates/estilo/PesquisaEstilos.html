@@ -32,12 +32,12 @@
 	
 	<div class="container-fluid">
 	
-		<form method="GET">
+		<form method="GET" th:object="${estiloFilter}">
 			
 			<div class="row">
 				<div class="form-group  col-sm-12">
 					<label class="control-label" for="nome">Nome</label>
-					<input type="text" class="form-control" id="nome" autofocus="autofocus"/>
+					<input type="text" class="form-control" id="nome" autofocus="autofocus" th:field="*{nome}"/>
 				</div>						
 			</div>
 			<button type="submit" class="btn  btn-primary">Pesquisar</button>
@@ -58,8 +58,8 @@
 				<tbody>
 					<tr th:each="estilo : ${estilos}">
 					
-						<td class="text-center">1</td>
-						<td >Estilo 1</td>
+						<td class="text-center" th:text="${estilo.codigo}">1</td>
+						<td  th:text="${estilo.nome}">Estilo 1</td>
 						
 						<td class="text-center">
 							<a class="btn  btn-link  btn-xs" title="Editar"> 
@@ -77,6 +77,33 @@
 				</tbody>
 			</table>
 		</div>
+		
+		<div class="col-sm-12 text-center">		
+			<nav>
+				<ul class="pagination pagination-sm">
+					<li>
+						<a href="#"><span>&laquo;</span></a>
+					</li>
+				
+					<li class="active">
+						<a href="#">1</a>
+					</li>
+					<li>
+						<a href="#">2</a>
+					</li>
+					<li>
+						<a href="#">3</a>
+					</li>
+					<li>
+						<a href="#"><span>&raquo;</span></a>
+					</li>							
+				</ul>					
+			</nav>
+		
+		
+		</div> 
+		
+		
 				
   </div>	
 
