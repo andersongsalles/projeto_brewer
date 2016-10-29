@@ -56,7 +56,7 @@
 				</thead>
 					
 				<tbody>
-					<tr th:each="estilo : ${estilos}">
+					<tr th:each="estilo : ${pagina.content}">
 					
 						<td class="text-center" th:text="${estilo.codigo}">1</td>
 						<td  th:text="${estilo.nome}">Estilo 1</td>
@@ -72,29 +72,29 @@
 					
 					</tr>
 					
-					
+					<tr th:if="${#lists.isEmpty(pagina.content)}">
+					 	<td colspan="3">Nenhum estilo encontrado</td>
+					</tr>
 						
 				</tbody>
 			</table>
 		</div>
 		
-		<div class="col-sm-12 text-center">		
+		<div class="col-sm-12 text-center" th:if="${not #lists.isEmpty(pagina.content)}">		
 			<nav>
 				<ul class="pagination pagination-sm">
-					<li>
+					<li class="disabled">
 						<a href="#"><span>&laquo;</span></a>
 					</li>
+					
+					<th:block th:each="p : ${#numbers.sequence(1, pagina.totalPages)}">
+						<li>
+							<a th:href="|?page=${p -1}|">[[${p}]]</a>
+						</li>
+					</th:block>
 				
-					<li class="active">
-						<a href="#">1</a>
-					</li>
-					<li>
-						<a href="#">2</a>
-					</li>
-					<li>
-						<a href="#">3</a>
-					</li>
-					<li>
+										
+					<li class="disabled">
 						<a href="#"><span>&raquo;</span></a>
 					</li>							
 				</ul>					
