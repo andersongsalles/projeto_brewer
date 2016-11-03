@@ -1,6 +1,7 @@
 package com.algaworks.brewer.controller;
 
 
+import javax.servlet.http.HttpServletRequest;
 import javax.swing.plaf.synth.SynthSeparatorUI;
 import javax.validation.Valid;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.algaworks.brewer.controller.page.PageWrapper;
 import com.algaworks.brewer.model.Estilo;
 import com.algaworks.brewer.repository.Estilos;
 import com.algaworks.brewer.repository.filter.EstiloFilter;
@@ -69,14 +71,15 @@ public class EstilosController {
 	}
 	
 	@GetMapping
-	public ModelAndView pesquisar(EstiloFilter estiloFilter, BindingResult result, @PageableDefault(size = 2) Pageable pageable){
+	public ModelAndView pesquisar(EstiloFilter estiloFilter, BindingResult result
+			, @PageableDefault(size = 2) Pageable pageable, HttpServletRequest httpServletRequest){
 		ModelAndView mv = new ModelAndView("estilo/PesquisaEstilos");
 		
 		System.out.println(">>> pageNumber: " + pageable.getPageNumber());
 		
-		Page<Estilo> pagina = estilos.filtrar(estiloFilter, pageable);
+		PageWrapper<Estilo> paginaWrapper = new PageWrapper<>(estilos.filtrar(estiloFilter, pageable), httpServletRequest);
 		
-		mv.addObject("pagina", pagina);
+		mv.addObject("pagina", paginaWrapper);
 		
 		return mv;
 	}
