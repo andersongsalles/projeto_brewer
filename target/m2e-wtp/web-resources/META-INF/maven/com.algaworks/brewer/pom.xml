@@ -33,7 +33,7 @@
 		<hibernate-validator.version>5.2.4.Final</hibernate-validator.version>
 		
 		<!-- Thymeleaf - Layout Dialect -->
-		<thymeleaf-layout-dialect.version>2.0.1</thymeleaf-layout-dialect.version>
+		<thymeleaf-layout-dialect.version>2.0.0</thymeleaf-layout-dialect.version>
 		
 		<!-- Logging -->
 		<log4j.version>2.6</log4j.version>
@@ -185,7 +185,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql-connector-java.version}</version>
-			
+			<scope>provided</scope>
 		</dependency>
 		
 		<!-- Spring Data JPA -->
@@ -214,23 +214,12 @@
 		
 		<!-- Thymeleaf extras data attribute -->
 		<dependency>
-		    <groupId>com.github.mxab.thymeleaf.extras</groupId>
-		    <artifactId>thymeleaf-extras-data-attribute</artifactId>
-		    <version>${thymeleaf-extras-data-attribute.version}</version>
-		    <scope>compile</scope>	
+    		<groupId>com.github.mxab.thymeleaf.extras</groupId>
+    		<artifactId>thymeleaf-extras-data-attribute</artifactId>
+    		<version>${thymeleaf-extras-data-attribute.version}</version>
+    		<scope>compile</scope>
 		</dependency>
-	
+		
 	</dependencies>
 	
-	<repositories>
-		<repository>
-			<id>sonatype-nexus-snapshots</id>
-    		<name>Sonatype Nexus Snapshots</name>
-    		<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    		<snapshots>
-      			<enabled>true</enabled>
-    		</snapshots>
-		</repository>
-	</repositories>
-
 </project>

@@ -1,12 +1,9 @@
 package com.algaworks.brewer.controller;
 
-
 import javax.servlet.http.HttpServletRequest;
-import javax.swing.plaf.synth.SynthSeparatorUI;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.MediaType;
@@ -72,15 +69,12 @@ public class EstilosController {
 	
 	@GetMapping
 	public ModelAndView pesquisar(EstiloFilter estiloFilter, BindingResult result
-			, @PageableDefault(size = 2) Pageable pageable, HttpServletRequest httpServletRequest){
+			, @PageableDefault(size = 2) Pageable pageable, HttpServletRequest httpServletRequest) {
 		ModelAndView mv = new ModelAndView("estilo/PesquisaEstilos");
 		
-		System.out.println(">>> pageNumber: " + pageable.getPageNumber());
-		
-		PageWrapper<Estilo> paginaWrapper = new PageWrapper<>(estilos.filtrar(estiloFilter, pageable), httpServletRequest);
-		
+		PageWrapper<Estilo> paginaWrapper = new PageWrapper<>(estilos.filtrar(estiloFilter, pageable)
+				, httpServletRequest);
 		mv.addObject("pagina", paginaWrapper);
-		
 		return mv;
 	}
 	

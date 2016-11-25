@@ -17,10 +17,10 @@ import com.algaworks.brewer.storage.FotoStorageRunnable;
 @RestController
 @RequestMapping("/fotos")
 public class FotosController {
-	
+
 	@Autowired
 	private FotoStorage fotoStorage;
-
+	
 	@PostMapping
 	public DeferredResult<FotoDTO> upload(@RequestParam("files[]") MultipartFile[] files) {
 		DeferredResult<FotoDTO> resultado = new DeferredResult<>();

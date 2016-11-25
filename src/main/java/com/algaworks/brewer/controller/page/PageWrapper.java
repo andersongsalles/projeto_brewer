@@ -10,13 +10,13 @@ import org.springframework.data.domain.Sort.Order;
 import org.springframework.web.util.UriComponentsBuilder;
 
 public class PageWrapper<T> {
-	
+
 	private Page<T> page;
 	private UriComponentsBuilder uriBuilder;
 
-	public PageWrapper(Page<T> page, HttpServletRequest httpServletRequest) {		
+	public PageWrapper(Page<T> page, HttpServletRequest httpServletRequest) {
 		this.page = page;
-		//
+
 		String httpUrl = httpServletRequest.getRequestURL().append(
 				httpServletRequest.getQueryString() != null ? "?" + httpServletRequest.getQueryString() : "")
 				.toString().replaceAll("\\+", "%20");
