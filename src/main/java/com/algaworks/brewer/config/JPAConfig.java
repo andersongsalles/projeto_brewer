@@ -20,7 +20,7 @@ import com.algaworks.brewer.model.Cerveja;
 import com.algaworks.brewer.repository.Cervejas;
 
 @Configuration
-@ComponentScan(basePackageClasses = Cervejas.class)
+
 @EnableJpaRepositories(basePackageClasses = Cervejas.class, enableDefaultTransactions = false)
 @EnableTransactionManagement
 @ComponentScan(basePackageClasses = Cervejas.class)
